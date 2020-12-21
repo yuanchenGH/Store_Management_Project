@@ -1,0 +1,114 @@
+<!-- // --== CS400 File Header Information ==--
+// Name: Yuan Chen	
+// Email: chen2243@wisc.edu
+// Team: DC
+// Role: Front End Developer 2
+// TA: Yelun Bao
+// Lecturer: Gary Dahl
+// Notes to Grader: <optional extra notes> -->
+
+<html>
+<head>
+	<title>Project 4 Store Front Page</title>
+	<link href="application.css">
+	<meta charset="UTF-8">
+	<meta name = "author" content="Yuan Chen">
+	<style type="text/css">
+		h1{
+			font-family: Geneva;
+			font-size: 30px;
+			text-align: center;
+		}
+		caption{
+			font-family: Geneva;
+			font-size: 25px;
+		}
+		th{
+			font-size: 20px
+			text-align: center;
+			padding: 12px;
+			background-color: #FF6347;
+  			color: white;
+		}
+		tr{
+			text-align: center;
+			padding: 12px;
+		}
+		tr:hover {background-color: #ddd;}
+		table, th, td{
+			width: 100%;
+			table-layout: fixed;
+			border: 1px solid white;
+			border-collapse: collapse;
+			border-spacing: 5px;
+			text-align: center;
+		}
+		p{
+			color: red;
+			text-decoration: underline;
+			text-decoration-color: red;
+			text-align: center;
+		}
+		.center{
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body id = "body">
+	<h1>Welcome to The Store Management System</h1> 
+	<label for="category">Choose a category:</label>
+	<select name="category" id="category">
+		<option>-- select a category --</option>
+	</select>
+	<label for="item">Choose an item:</label>
+	<select name="item" id="item">
+		<option value="">-- select an item --</option>
+	</select>
+ 	<button id="search">Search</button><br><br>	
+
+	<table id = "print">
+		<caption>Item information</caption>
+		<thead><th>Item</th><th>Quantity</th><th>Price($)</th><th>Change Quantity</th></thead>
+		<tbody id = "itemTable"></tbody>
+	</table><br>
+	<div class = "center"><button id = "changeQuant" class = "center">Apply Change</button></div>
+	<p>Input a positive number to increase quantity, or negative number to decrease quantity.</p>
+
+	<script type="text/javascript">
+		var itemName = [];
+		var itemQuant = [];
+		var itemPrice = [];
+		var table;
+		var index1 = document.getElementById('category').selectedIndex;
+		var index2 = document.getElementById('item').selectedIndex;
+
+		//This function insert new table row into the itemTable with a input field
+		function search(){
+			table = document.getElementById("itemTable")
+			table.innerHTML = "";		
+			for(var i = 0; i < itemName.length ; i++){
+	            var row = table.insertRow(-1);
+	            var name = row.insertCell(0);
+	            var quant = row.insertCell(1);
+	            var price = row.insertCell(2);
+	            var quantChange = row.insertCell(3);
+	            name.innerHTML = itemName[i];
+	            quant.innerHTML = itemQuant[i];
+	            price.innerHTML = itemPrice[i];
+	            var input = document.createElement("input");
+	            input.type = "number";
+	            input.id = "item" + i;
+	            quantChange.appendChild(input);
+
+			}
+		}
+		//This function reset the itemName, itemQuant and itemPrice arraies 
+		function clearItems(){
+			itemName = [];
+			itemQuant = [];
+			itemPrice = [];
+		}
+	</script>
+</body>
+</html>
